@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+<!--        <xpath expr="//span[hasclass('product-name')]" position="replace">-->
+<!--            <span class="product-name">-->
+<!--                [codigo]-->
+<!--                <t t-esc="productName" />-->
+<!--            </span>-->
+<!--        </xpath>-->
+    </t>
+
+</templates>

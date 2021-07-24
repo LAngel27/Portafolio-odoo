@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductItem" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('product-name')]" position="after">
+            <!-- <t t-if="env.pos.config.show_stock_product and props.product.type != 'service'"> -->
+            <span class="qty-tag" t-att-id="'qty-tag'+props.product.id">
+                <t t-esc="stockAvailable"/>
+            </span>
+            <!-- </t> -->
+        </xpath>
+        <xpath expr="//div[hasclass('product-name')]" position="replace">
+            <div class="product-name" t-attf-id="article_product_{{props.product.id}}">
+                <t t-if="props.product.default_code">[                    <t t-esc="props.product.default_code" />
+]</t>
+                <t t-esc="props.product.display_name"/>
+                <span class="qty-tag-two mt-4" t-att-id="'qty-tag'+props.product.id">
+                    <!-- <t t-esc="stockAvailable"/> -->
+                    0
+                </span>
+
+            </div>
+        </xpath>
+    </t>
+
+</templates>

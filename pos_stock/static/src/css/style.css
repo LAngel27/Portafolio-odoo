@@ -1,0 +1,46 @@
+.qty-tag{
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: auto;
+    vertical-align: top;
+    color: #FFF;
+    line-height: 13px;
+    background: none repeat scroll 0% 0% #7F82AC;
+    padding: 2px 5px;
+    border-radius: 2px;
+}
+
+.qty-tag-two{
+    position: absolute;
+    /* top: 30px; */
+    /* left: 0; */
+    bottom: 0;
+    right: 0;
+    width: auto;
+    vertical-align: top;
+    color: #FFF;
+    line-height: 13px;
+    background: none repeat scroll 0% 0% #7F82AC;
+    padding: 2px 5px;
+    border-radius: 2px;
+}
+
+.pos .popup.popup-selection .selection-item{
+    width: auto;
+    background: rgb(230, 230, 230);
+    cursor: pointer;
+    text-align: left;
+    padding: 0px 16px
+}
+
+.pos .popup.popup-selection .selection-item:hover {
+    background-color: #6EC89B;
+}
+
+
+
+
+
+
+

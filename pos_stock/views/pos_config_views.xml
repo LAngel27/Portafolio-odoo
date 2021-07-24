@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="show_stock_pos_config_view_form" model="ir.ui.view">
+            <field name="name">show.stock.pos.config.view.form</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='accounting_section']" position="after">
+                    <h2>Stock de Productos</h2>
+                    <div class="row mt16 o_settings_container" name="pos_fe_active">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="show_stock_product"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="show_stock_product" string="Mostrar stock de productos"/>
+                                <div class="text-muted">
+                                    Habilita el stock a mano de cada producto.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt16 o_settings_container" name="pos_fe_active">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="show_stock_product_none"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="show_stock_product" string="No mostrar stock con cantidad en 0"/>
+                                <div class="text-muted">
+                                    No vender el producto con el stock  con cantidad  0
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt16 o_settings_container" name="pos_fe_active">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <!-- <div class="o_setting_right_pane">
+                                <span class="o_form_label">Ubicaciones</span>
+                                <div class="text-muted">
+                                    Seleccione la bodega y la ubicacion por default
+                                </div>
+                                <field name="warehouse_id" placeholder="Bodega"/> attrs="{'readonly': [('has_active_session','=', True)]}"
+                                <field name="location_id" placeholder="Ubicacion"/> attrs="{'readonly': [('has_active_session','=', True)]}"
+                            </div> -->
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Ubicaciones</span>
+                                <div class="text-muted">
+                                    Seleccione las bodega y las ubicaciones disponibles
+                                </div>
+                                <field name="warehouse_ids" widget="many2many_tags" placeholder="Bodega"/>
+                                <!--attrs="{'readonly': [('has_active_session','=', True)]}"-->
+                                <!-- <field name="location_ids" widget="many2many_tags" placeholder="Ubicacion"/> -->
+                                <!--attrs="{'readonly': [('has_active_session','=', True)]}"-->
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

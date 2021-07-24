@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="SetPricelistButtonInh" t-inherit="point_of_sale.SetPricelistButton" t-inherit-mode="extension" owl="1">
+        <!-- <t t-name="SetPricelistButton" owl="1">
+            <div class="control-button o_pricelist_button">
+                <i class="fa fa-th-list" role="img" aria-label="Price list" title="Price list" />
+                <t t-esc="currentPricelistName" />
+            </div>
+        </t> -->
+        <!-- <t t-name="SetFiscalPositionButton" owl="1">
+            <div class="control-button o_fiscal_position_button">
+                <i class="fa fa-book" role="img" aria-label="Set fiscal position" title="Set fiscal position" />
+                <t t-esc='currentFiscalPositionName' />
+            </div>
+        </t> -->
+
+        <xpath expr="//div[@class='control-buttons']" position="replace">
+            <!-- <div class="control-button o_pricelist_button">
+                <i class="fa fa-th-list" role="img" aria-label="Price list" title="Price list" />
+                <t t-esc="currentPricelistName" />
+            </div> -->
+            <div class="control-button">
+
+                <h1>hello</h1>
+            </div>
+        </xpath>
+    </t>
+</templates>
