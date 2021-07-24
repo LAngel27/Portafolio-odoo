@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="payment_icon_webpay" model="payment.icon">
+            <field name="name">Webpay</field>
+            <field name="image" type="base64" file="payment_link/static/img/webpay_icon.jpeg"/>
+        </record>
+    </data>
+</odoo>

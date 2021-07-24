@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="point_of_sale_report_saledetails_inherit" inherit_id="point_of_sale.report_saledetails">
+            <xpath expr="//t[@t-call='web.internal_layout']" position="replace">
+                <div class="header">
+                </div>
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure">
+
+                            <div>
+                                <img class="img-fluid" src="/inherit_z_report_pdf/static/src/img/logo_sesfar2.jpeg"/>
+                                <p class="d-inline-block font-weight-bold text-capitalize m-0"
+                                    style="font-size: 18px;">fecha Inicializacion:
+                                <span t-esc="date_start"/></p>
+                                <p class="d-inline-block font-weight-bold text-capitalize m-0"
+                                    style="font-size: 18px;">fecha finalizacion:
+                                <span t-esc="date_stop"/></p>
+                            </div>
+
+                            <div class="mt-3">
+                                <h2 class="text-center">Resumen de ventas</h2>
+                                <h3 class="text-denter font-weight-bold">Pagos</h3>
+                                <table  class="table table-sm">
+                                    <thead><tr>
+                                            <th>Name</th>
+                                            <th>Total</th>
+                                    </tr></thead>
+                                    <tbody>
+                                        <tr t-foreach='payments' t-as='payment'>
+                                            <td><t t-esc="payment['name']"/></td>
+                                            <td><t t-esc="payment['total']" t-options="{'widget': 'float', 'precision': currency_precision}"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3 class="text-denter font-weight-bold">Impuestos</h3>
+                                <table class="table table-sm">
+                                    <thead><tr>
+                                        <th style="font-size: 14px;">Total</th>
+                                        <th style="font-size: 14px">Importe impuesto</th>
+                                        <th style="font-size: 14px">Importe base</th>
+                                    </tr></thead>
+                                    <tbody>
+                                        <tr t-foreach="taxes" t-as="tax">
+                                            <td><t t-esc="tax['name']"/></td>
+                                            <td class="text-center"><t t-esc="tax['tax_amount']" t-options="{'widget': 'float', 'precision': currency_precision}"/></td>
+                                            <td class="text-center"><t t-esc="tax['base_amount']" t-options="{'widget': 'float', 'precision': currency_precision}"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <br/>
+                                <br/>
+
+                                <strong>Total: <t t-esc='total_paid' t-options="{'widget': 'float', 'precision': currency_precision}"/></strong>
+                                        
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

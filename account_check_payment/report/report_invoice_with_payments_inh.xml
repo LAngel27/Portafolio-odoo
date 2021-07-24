@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        
+        <template id="account_report_invoice_with_payments_inherit"  inherit_id="account.report_invoice_document">
+            <xpath expr="//div[@id='qrcode']" position="after">
+                <t t-if="o.payment_id.code == 'check'">
+                    <p class="d-inline-block font-weight-bold" style="color: #6EAB70;">Numero del cheque: <span class="font-weight-normal" t-esc="o.payment_id.number_check" style="color: black;"/></p>
+                    <br />
+                    <p class="d-inline-block font-weight-bold" style="color: #6EAB70;">Nombre del cheque: <span class="font-weight-normal" t-esc="o.payment_id.check_name" style="color: black;"/></p>
+                    <br />
+                    <p class="d-inline-block font-weight-bold" style="color: #6EAB70;">Fecha de emision del cheque:  <span class="font-weight-normal" t-esc="o.payment_id.check_date_start" style="color: black;"/></p>
+                    <br />
+                    <p class="d-inline-block font-weight-bold" style="color: #6EAB70;">Fecha del pago del cheque: <span class="font-weight-normal" t-esc="o.payment_id.check_date_payment" style="color: black;"/></p>
+                    <br />
+                    <p class="d-inline-block font-weight-bold" style="color: #6EAB70;">CUIT del propietario del cheque: <span class="font-weight-normal" t-esc="o.payment_id.check_cuit" style="color: black;"/></p>
+                    <br />
+                    <p class="d-inline-block font-weight-bold" style="color: #6EAB70;">Nombre del propietario del cheque: <span class="font-weight-normal" t-esc="o.payment_id.name_propietary_check" style="color: black;"/></p>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>

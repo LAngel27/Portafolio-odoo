@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="group_button_change_state" model="res.groups">
+            <field name="name">Mostrar menu de precinto</field>
+        </record>
+
+    </data>
+</odoo>

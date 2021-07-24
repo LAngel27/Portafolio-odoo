@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sequence_creator_wizard,sequence_creator,model_sequence_creator,,1,1,1,1
+access_seal_management_manager,seal_management_manager,management_of_seals_sales.model_seal_management,,1,1,1,1
+access_carpet_picture_line_manager,carpet_picture_line_manager,management_of_seals_sales.model_carpet_picture_line,,1,1,1,1

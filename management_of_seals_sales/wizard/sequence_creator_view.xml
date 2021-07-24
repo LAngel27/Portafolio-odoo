@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="sequence_creator_view_form" model="ir.ui.view">
+            <field name="name">sequence.creator.view.form</field>
+            <field name="model">sequence.creator</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="number_start"/>
+                            <field name="sequence_size"/>
+                        </group>
+                        <group>
+                            <field name="number_end"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="create_sequence" string="Generar" type="object" class="btn-primary"/>
+                        <button string="Cerrar" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_generate_sequence_wizard" model="ir.actions.act_window">
+            <field name="name">Generador de precintos</field>
+            <field name="res_model">sequence.creator</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="sequence_creator_view_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="seals_categ" name="Precintos" parent="sale.sale_menu_root" sequence="5" groups="management_of_seals_sales.group_button_change_state"/>
+
+        <menuitem id="sequence_menu" parent="management_of_seals_sales.seals_categ" action="action_generate_sequence_wizard" sequence="8"/>
+
+
+        <!-- sale_menu_root -->
+
+    </data>
+</odoo>

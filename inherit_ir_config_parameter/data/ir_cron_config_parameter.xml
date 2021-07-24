@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <record id="ir_cron_config_parameter_inh" model="ir.cron">
+            <field name="name">Cron: Correcion tiempo expiracion DB</field>
+            <field name="model_id" ref="base.model_ir_config_parameter"/>
+            <field name="state">code</field>
+            <field name="code">model._time_corection_expiration_db()</field>
+            <field name="nextcall" eval="(DateTime.now().replace(hour=13, minute=0, second=0)).strftime('%Y-%m-%d %H:%M:%S')" />
+            <field name='interval_number'>1</field>
+            <field name='interval_type'>days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <template id="report_z_ticket_inherit" inherit_id="pos_z_report.front_sales_report_pdf_document">
+            <xpath expr="//div[@class='oe_structure']" position="before">
+                <img class="img-fluid" src="/inherit_z_report_pdf/static/src/img/logo_sesfar2.jpeg"/>
+                <t t-if="o.state == 'closed' and o.numero_ordenes &gt; 0">
+                    <t t-set="seller" t-value="o.get_seller_for_poss()"/>
+                    <div align="center" class="mt-1 mb-1">
+                        <h4>Medios de pago</h4>
+                    </div>
+                    <div class="w-100 mb-2" style="border: 1px solid gray;"></div>
+                    <p class="d-inline-block m-0" style="font-size: 18px"> Vendedor:</p>
+                    <span class="font-weight-bold" t-esc="seller[0].upper()" style="font-size: 16px;"/>
+                    <table class="w-100 mb-2 mt-2">
+                        <thead>
+                            <th class="text-left"
+                                style="font-size: 15px;">Medio de pago</th>
+                            <th class="text-center"
+                                style="font-size: 15px;">
+                                Cantidad de operaciones</th>
+                            <th class="text-center" style="font-size: 15px;">
+                                Monto</th>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.statement_ids" t-as="line">
+                                <tr>
+                                    <td class="text-left font-weight-bold"><span
+                                            t-esc="line.journal_id.display_name"
+                                                                  style="font-size: 12px;"/></td>
+                                    <td class="text-center"><span t-esc="line.total_operation"
+                                            style="font-size: 14px;"/></td>
+                                     <td class="text-center">$<span
+                                            t-esc="line.balance_end_real"
+                                                                  style="font-size: 14px;"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                </t>
+                <t t-else="">
+                    <div></div>
+                </t>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>
+

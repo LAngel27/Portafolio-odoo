@@ -1,0 +1,233 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="email_template_thanks_forour_service" model="mail.template">
+            <field name="name">Gracias por contratar</field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="email_from"></field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="subject">Gracias por contratar nuestros servicios</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <font style="font-size:18px;">
+                            <b>¡Gracias por contratar nuestros servicios!</b>
+                        </font>
+                        <br />
+                        <br />
+                        
+                        Tus alfombras ya están con nosotros y pronto van a ser procesadas<br />
+                    <br />
+                        
+                        NUESTRO PROCESO<br />
+                <br />
+
+                <div style="text-align: justify;">
+                            Todas nuestras alfombras son aspiradas por ambos lados con máquinas industriales para 
+                            eliminar los restos sólidos como comida, pelos de mascota y toda mugrecita que se encuentre 
+                            en ellas. Con esto nos aseguramos que las alfombras estén sin residuos para poder ingresar a 
+                            la siguiente zona que es la del lavado. Aquí realizamos un desmanchado localizado para 
+                            atenuar o eliminar señales de orina de mascotas, comida o líquidos que hayan podido 
+                            marcarlas. Luego procedemos a lavarlas completamente por ambos lados. Una vez acabado 
+                            este proceso, las ingresamos a una centrifuga especial para alfombras que las entregará solo 
+                            con 5% de humedad para ser ingresadas a una cámara de secado. La última etapa es la de 
+                            embalaje. En esta etapa las volvemos a aspirar para poder retirar posibles pelusitas que 
+                            hayan quedado y también las sanitizamos contra virus, hongos y bacterias. El producto 
+                            utilizado para este proceso es CleanQuat de la empresa ProTecsa donde su compuesto base 
+                            es el amonios cuaternario, tan mencionado en estos tiempos de pandemia. Todo este proceso 
+                            nos toma 7 días desde que las retiramos, a veces un poquito menos.
+                    <br />
+                    <br />
+                            Desde ya te queremos agradecer nuevamente que nos hayas confiado el lavado de tus 
+                            alfombras donde el único objetivo que tenemos es que las puedas volver a disfrutar con plena 
+                            confianza de que se encuentran lavadas y sanitazadas.
+                    <br />
+                    <br />
+                            % if object.sale_order_id: 
+                                Te invitamos a realizar el pago del servicio de la orden ${object.sale_order_id.name} 
+                                por el valor de ${format_amount(object.sale_order_id.amount_total,object.sale_order_id.currency_id)}. 
+                            % endif                   
+                            % if object.move_id:
+                                % if object.move_id.link and object.move_id.payment_state != 'paid':
+                                    en el siguiente link de pago:
+                    <br />
+                    <br />
+                    <a href="${object.move_id.link}">PAGUE AQUI SU FACTURA CON TARJETA DE CREDITO / DEBITO</a>
+                                % endif
+                            % endif
+                </div>
+            </p>
+        </div>
+    </field>
+    <field name="lang">${object.partner_id.lang}</field>
+    <field name="auto_delete" eval="True"/>
+</record>
+
+<record id="email_template_first_notice_status" model="mail.template">
+    <field name="name">Primer aviso</field>
+    <field name="model_id" ref="project.model_project_task"/>
+    <field name="email_from"></field>
+    <field name="partner_to">${object.partner_id.id}</field>
+    <field name="subject">Primer aviso de estatus</field>
+    <field name="body_html" type="html">
+        <div style="margin: 0px; padding: 0px;">
+            <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                <font style="font-size:18px;">
+                    <b>¡Primer aviso de estatus!</b>
+                </font>
+                <br />
+                <br />
+                        
+                        Tus alfombras ya están siendo procesadas por nuestro equipo.<br />
+            <br />
+                        
+                        NUESTRO PROCESO<br />
+        <br />
+
+        <div style="text-align: justify;">
+                            Tus alfombras ya las aspiramos e ingresaron al sector de lavado. Estamos aplicando todo 
+                            nuestro conocimiento y los productos necesarios para atenuar o eliminar las posibles 
+                            manchas. Luego de esto, serán lavadas por ambos lados, serán centrifugadas y secadas. Una 
+                            vez secas, las volveremos a aspirar para eliminar cualquier pelusita. Las sanitizaremos y 
+                            embalaremos para luego coordinar juntos el día que las recibas nuevamente.
+            <br />
+            <br />
+                            Nuestro único objetivo es que vuelvas a re-encantarte de tu alfombra y no tengas que 
+                            cambiarla, como dice nuestro slogan.
+            <br />
+            <br />
+                            Aprovechamos de invitarte nuevamente a que realices el pago 
+                            % if object.sale_order_id: 
+                                de la orden de trabajo ${object.sale_order_id.name} 
+                                por el monto de ${format_amount(object.sale_order_id.amount_total,object.sale_order_id.currency_id)} 
+                            % endif en el siguiente link para que apenas estén listas, podamos coordinar el envío de ellas.                  
+                            % if object.move_id:
+                                % if object.move_id.link and object.move_id.payment_state != 'paid':
+            <br />
+            <br />
+            <a href="${object.move_id.link}">PAGUE AQUI SU FACTURA CON TARJETA DE CREDITO / DEBITO</a>
+                                % endif
+                            % endif
+        </div>
+    </p>
+</div>
+</field>
+<field name="lang">${object.partner_id.lang}</field>
+<field name="auto_delete" eval="True"/>
+</record>
+
+<record id="email_template_second_notice_status" model="mail.template">
+<field name="name">Segundo aviso</field>
+<field name="model_id" ref="project.model_project_task"/>
+<field name="email_from"></field>
+<field name="partner_to">${object.partner_id.id}</field>
+<field name="subject">Segundo aviso de estatus</field>
+<field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        <font style="font-size:18px;">
+            <b>¡SEGUNDO AVISO DE ESTATUS!</b>
+        </font>
+        <br />
+        <br />
+                        
+                        Queda poquito para que tengas tus alfombras de vuelta.<br />
+    <br />
+                        
+                        Proceso de Secado.<br />
+<br />
+
+<div style="text-align: justify;">
+                            Tus alfombras ya las aspiramos, utilizamos los productos correspondientes para 
+                            atenuar/eliminar las manchas y luego las lavamos. Ahora están en el proceso de secado. 
+                            Después las sanitizaremos con Clean Quat de la marca Protecsa, poderoso producto a base 
+                            de amonios cuaternarios para la eliminación de hongos, virus y bacterias. Una vez listas, te 
+                            llamaremos para coordinar la entrega.<br />
+<br />
+                            Entendemos lo importante que son tus alfombras y lo ansioso que debes estar por que 
+                            vuelvan a tus manos.<br />
+<br />
+                            Te recordamos la dirección donde puedes realizar el pago del servicio para que coordinemos 
+                            lo antes posible la entrega de tus alfombras.
+                             % if object.move_id:
+                                % if object.move_id.link and object.move_id.payment_state != 'paid':
+<br />
+<br />
+<a href="${object.move_id.link}">PAGUE AQUI SU FACTURA CON TARJETA DE CREDITO / DEBITO</a>
+                                % endif
+                            % endif
+<br />
+<br />
+                            Atentamente,<br />
+<br />
+                            Steve Politeo Smith<br />
+                            Gerente Comercial
+</div>
+</p>
+</div>
+</field>
+<field name="lang">${object.partner_id.lang}</field>
+<field name="auto_delete" eval="True"/>
+</record>
+
+<record id="email_template_last_notice_status" model="mail.template">
+<field name="name">Ultimo aviso</field>
+<field name="model_id" ref="project.model_project_task"/>
+<field name="email_from"></field>
+<field name="partner_to">${object.partner_id.id}</field>
+<field name="subject">ÚLTIMO AVISO DE ESTATUS</field>
+<field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+<p style="margin: 0px; padding: 0px; font-size: 13px;">
+<font style="font-size:18px;">
+<b>¡ÚLTIMO AVISO DE ESTATUS!</b>
+</font>
+<br/>
+<br/>
+                        
+                        Ya estamos ok.<br/>
+<br/>
+                        
+                        Coordinemos la entrega.<br />
+<br />
+
+<div style="text-align: justify;">
+                            Tus alfombras ya están listas para ser entregadas. Durante las siguientes 48 horas nos 
+                            comunicaremos contigo para poder coordinar la entrega de tus alfombras. De seguro las 
+                            extrañabas mucho.<br />
+<br />
+                            Ahora podrás disfrutarlas nuevamente ya que están desmanchadas, lavadas y sanitizadas 
+                            para que vuelvas a lucirlas donde corresponde.<br />
+<br />
+                            Para ello necesitamos que realices el pago de nuestro servicio correspondiente a la orden de 
+                            trabajo 
+                            % if object.sale_order_id: 
+                                ${object.sale_order_id.name} 
+                                por el monto de ${format_amount(object.sale_order_id.amount_total,object.sale_order_id.currency_id)} 
+                            % endif
+<br />
+<br />
+                            Te recordamos la dirección donde puedes realizar el pago del servicio para que coordinemos 
+                            lo antes posible la entrega de tus alfombras.
+                            % if object.move_id:
+                                % if object.move_id.link and object.move_id.payment_state != 'paid':
+<br />
+<br />
+<a href="${object.move_id.link}">PAGUE AQUI SU FACTURA CON TARJETA DE CREDITO / DEBITO</a>
+                                % endif
+                            % endif
+<br />
+<br />
+                            Atentamente,<br />
+<br />
+                            Steve Politeo Smith<br />
+                            Gerente Comercial
+</div>
+</p>
+</div>
+</field>
+<field name="lang">${object.partner_id.lang}</field>
+<field name="auto_delete" eval="True"/>
+</record>
+</data>
+</odoo>
