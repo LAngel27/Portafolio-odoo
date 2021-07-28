@@ -11,7 +11,9 @@
                     <div class="selection scrollable-y">
                         <t t-foreach="env.pos.warehouse" t-as="wh" t-key="wh.id">
                             <div class="selection-item" t-on-click="selectItem(wh.id,wh.name)">
-                                <t t-esc='wh.name'/>
+                                <span t-attf-id='{{wh.id}}'>
+                                    <t t-esc='wh.name'/>
+                                </span>
                             </div>
                         </t>
                     </div>

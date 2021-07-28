@@ -27,7 +27,6 @@ odoo.define("pos_stock.ProductScreen", function (require) {
                 return orderLinesReject;
             }
             _onClickPay() {
-                debugger;
                 let valuesReject = this.validatorStockAvailable();
                 if (this.env.pos.config.show_stock_product_none) {
                     if (valuesReject.length >= 1) {

@@ -7,16 +7,11 @@ odoo.define("pos_stock.ProductItem", function (require) {
 
     const StockProductItem = (ProductItem) =>
         class extends ProductItem {
-            constructor() {
-                super(...arguments);
-                this.state = useState({ stock: {} });
-            }
             get stockAvailable() {
                 this.props.product.updateQuantity();
                 return this.props.product.quantity_available;
             }
             get updateStockChange() {
-                debugger;
                 this.props.product.updateStockChange();
                 return this.props.product.otherStockQuantity;
             }

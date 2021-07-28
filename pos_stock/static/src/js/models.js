@@ -63,12 +63,10 @@ odoo.define("pos_stock.models", function (require) {
             ProductSuper.initialize.call(this, attr, options);
             this.quantity_available = this.quantity_available || 0;
             this.otherStockQuantity = this.otherStockQuantity || 0;
-            this.warehouseChange = this.warehouseChange;
         },
         updateQuantity: function () {
-            let self = [this];
-            let warehouses = this.pos.config.warehouse_ids;
-            let configWarehouse = this.pos.picking_type.warehouse_id;
+            // let self = [this];
+            // let configWarehouse = this.pos.picking_type.warehouse_id;
             let configLocation = this.pos.picking_type.default_location_src_id;
             let stockFilter = this.pos.stock.filter((item) => item.location_id[0] === configLocation[0] && this.id === item.product_id[0]);
             if (stockFilter.length >= 1) {
@@ -80,9 +78,24 @@ odoo.define("pos_stock.models", function (require) {
             }
         },
         updateStockChange: function () {
-            debugger;
             let configWarehouse = this.pos.picking_type.warehouse_id;
             let configLocation = this.pos.picking_type.default_location_src_id;
+            let warehouseChange = this.pos.config.warehouse_change;
+            if (warehouseChange) {
+                if (warehouseChange.id != configWarehouse[0]) {
+                    let warehouseFilter = this.pos.warehouse.filter((item) => item.id === warehouseChange.id && item.active);
+                    let stockFilter = this.pos.stock.filter((item) => item.location_id[0] === warehouseFilter[0].lot_stock_id[0] && this.id === item.product_id[0]);
+                    if (stockFilter.length === 1) {
+                        this.otherStockQuantity = stockFilter[0].available_quantity;
+                    } else {
+                        this.otherStockQuantity = 0;
+                    }
+                } else {
+                    this.otherStockQuantity = 0;
+                }
+            } else {
+                // pass
+            }
         },
         // get_stock_Available: function () {
         //     let self = this;

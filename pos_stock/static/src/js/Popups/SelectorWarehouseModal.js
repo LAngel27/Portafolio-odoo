@@ -13,7 +13,6 @@ odoo.define("pos_stock.SelectorWarehouseModal", function (require) {
     class SelectorWarehouseModal extends AbstractAwaitablePopup {
         constructor() {
             super(...arguments);
-            debugger;
             this.state = useState({ warehouse: this.props.warehouse });
         }
         get currentOrder() {
@@ -23,7 +22,14 @@ odoo.define("pos_stock.SelectorWarehouseModal", function (require) {
             this.confirm();
         }
         selectItem(itemId, itemName) {
-            debugger;
+            const $document = this.el.ownerDocument;
+            const $itemSelect = $document.getElementById(itemId).innerText;
+            const $buttomWarehouses = $document.querySelector("#text_button");
+            $buttomWarehouses.innerText = $itemSelect;
+            this.env.pos.config.warehouse_change = {
+                id: itemId,
+                name: itemName,
+            };
             this.confirm();
         }
     }

@@ -18,8 +18,4 @@ class PosConfig(models.Model):
         'stock.warehouse', string='Almacenes disponibles')
     location_ids = fields.Many2many(
         'stock.location', string='Ubicaciones disponibles')
-
-    def get_warehouse(self, id):
-        ids = id
-        print('hello world')
-        return 'name'
+    warehouse_change = fields.Char(string='Cambio bodega')
