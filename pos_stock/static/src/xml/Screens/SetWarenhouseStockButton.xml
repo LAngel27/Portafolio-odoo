@@ -3,7 +3,7 @@
     <t t-name="SetWarenhouseStockButton" owl="1">
         <div class="control-button o_pricelist_button" t-on-click="display_popup_warehouse">
             <i class="fa fa-th-list" role="img" aria-label="Price list" title="Price list"/>
-            <t t-esc="defaultWarehouse"/>
+            <t t-esc="state.warehouseDefault[1]"/>
         </div>
     </t>
 </templates>

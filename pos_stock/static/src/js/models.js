@@ -6,6 +6,7 @@ odoo.define("pos_stock.models", function (require) {
     var rpc = require("web.rpc");
 
     models.load_fields("product.product", ["qty_available", "type", "stock_quant_ids"]);
+    models.load_fields("stock.picking.type", ["warehouse_id", "default_location_src_id"]);
 
     models.load_models({
         model: "stock.warehouse",
@@ -60,19 +61,30 @@ odoo.define("pos_stock.models", function (require) {
     models.Product = models.Product.extend({
         initialize: function (attr, options) {
             ProductSuper.initialize.call(this, attr, options);
+            this.quantity_available = this.quantity_available || 0;
+            this.otherStockQuantity = this.otherStockQuantity || 0;
+            this.warehouseChange = this.warehouseChange;
         },
-        update_quantity: function () {
-            debugger;
+        updateQuantity: function () {
+            let self = [this];
             let warehouses = this.pos.config.warehouse_ids;
-            if (!warehouses.lenght < 1) {
-                // pass
+            let configWarehouse = this.pos.picking_type.warehouse_id;
+            let configLocation = this.pos.picking_type.default_location_src_id;
+            let stockFilter = this.pos.stock.filter((item) => item.location_id[0] === configLocation[0] && this.id === item.product_id[0]);
+            if (stockFilter.length >= 1) {
+                stockFilter.forEach((item) => {
+                    this.quantity_available = item.available_quantity;
+                });
             } else {
-                for (let wh of warehouses) {
-                    console.log(wh);
-                }
+                // pass
             }
         },
-        // get_stock_available: function () {
+        updateStockChange: function () {
+            debugger;
+            let configWarehouse = this.pos.picking_type.warehouse_id;
+            let configLocation = this.pos.picking_type.default_location_src_id;
+        },
+        // get_stock_Available: function () {
         //     let self = this;
         //     return rpc
         //         .query({
@@ -80,31 +92,9 @@ odoo.define("pos_stock.models", function (require) {
         //             method: "calculate_qty_sale_available",
         //             args: [[self.id], self.pos.config_id],
         //         })
-        //         .then(function (result) {});
-        // },
-        // get_warehouse_default: function () {
-        //     return rpc
-        //         .query({
-        //             model: "pos.config",
-        //             method: "get_warehouse",
-        //             args: [self.id],
-        //         })
         //         .then(function (result) {
-        //             debugger;
-        //             console.log(result);
+        //             self.quantity_available = parseInt(result);
         //         });
         // },
-        get_stock_Available: function () {
-            let self = this;
-            return rpc
-                .query({
-                    model: "product.product",
-                    method: "calculate_qty_sale_available",
-                    args: [[self.id], self.pos.config_id],
-                })
-                .then(function (result) {
-                    self.quantity_available = parseInt(result);
-                });
-        },
     });
 });

@@ -3,14 +3,22 @@ odoo.define("pos_stock.ProductItem", function (require) {
 
     const ProductItem = require("point_of_sale.ProductItem");
     const Registries = require("point_of_sale.Registries");
+    const { useState } = owl.hooks;
 
     const StockProductItem = (ProductItem) =>
         class extends ProductItem {
+            constructor() {
+                super(...arguments);
+                this.state = useState({ stock: {} });
+            }
             get stockAvailable() {
-                this.props.product.update_quantity();
-                // this.props.product.get_config();
-                this.props.product.get_stock_Available();
-                return this.props.product.qty_available;
+                this.props.product.updateQuantity();
+                return this.props.product.quantity_available;
+            }
+            get updateStockChange() {
+                debugger;
+                this.props.product.updateStockChange();
+                return this.props.product.otherStockQuantity;
             }
         };
 

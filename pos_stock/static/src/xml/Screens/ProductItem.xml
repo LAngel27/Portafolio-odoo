@@ -14,8 +14,7 @@
 ]</t>
                 <t t-esc="props.product.display_name"/>
                 <span class="qty-tag-two mt-4" t-att-id="'qty-tag'+props.product.id">
-                    <!-- <t t-esc="stockAvailable"/> -->
-                    0
+                    <t t-esc="updateStockChange"/>
                 </span>
 
             </div>

@@ -5,12 +5,7 @@ odoo.define("post_stock.SetPricelistButton", function (require) {
     const { useListener } = require("web.custom_hooks");
     const Registries = require("point_of_sale.Registries");
 
-    const SetPricelistButtonInh = (SetPricelistButton) =>
-        class extends SetPricelistButton {
-            PrintName() {
-                console.log("hello");
-            }
-        };
+    const SetPricelistButtonInh = (SetPricelistButton) => class extends SetPricelistButton {};
 
     Registries.Component.extend(SetPricelistButton, SetPricelistButtonInh);
     return SetPricelistButtonInh;
